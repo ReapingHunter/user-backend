@@ -1,0 +1,32 @@
+[
+  {
+    "id": 0,
+    "username": "TheKeeper",
+    "password": "1234",
+    "email": "thekeeper@gmail.com"
+  },
+  {
+    "id": 1,
+    "username": "TheSeeker",
+    "password": "5678",
+    "email": "thekeeper@gmail.com"
+  },
+  {
+    "id": 2,
+    "username": "MarlexManalili",
+    "password": "password",
+    "email": "20103264@usc.edu.ph"
+  },
+  {
+    "id": 3,
+    "username": "testuser",
+    "password": "securepassword",
+    "email": "test@example.com"
+  },
+  {
+    "id": 4,
+    "username": "Cedric",
+    "password": "ilyoukid",
+    "email": "cedric@yahoo.com"
+  }
+]
