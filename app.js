@@ -1,15 +1,15 @@
 const express = require("express")
 const routes = require("./routes/user")
 const { loggingMiddleware } = require('./middleware/loggingMiddleware')
+const { rateLimiterMiddleware } = require('./middleware/rateLimiterMiddleware')
 
 const app = express()
 const port = 3000
 
-// Middleware to parse JSON
+// Middlewares
 app.use(express.json())
-
-// Logging middleware
 app.use(loggingMiddleware)
+app.use(rateLimiterMiddleware)
 
 app.use('/', routes)
 

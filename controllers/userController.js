@@ -1,4 +1,4 @@
-const { getUsers, saveUsers } = require("../models/userModel")
+const { createUser, findUserByUsername, findUserById } = require("../models/userModel")
 const jwt = require("jsonwebtoken")
 const Joi = require("joi")
 
@@ -21,20 +21,11 @@ const register = (req, res) => {
   if(error){
     return res.status(400).json({ message: error.details[0].message })
   }
-  
-  const {username, password, email} = req.body
-  const users = getUsers()
-  if(users.find((user) => user.username === username)){
+  const { username, password, email } = req.body
+  if(findUserByUsername(username)){
     return res.status(401).json({message: "Username already exists."})
   }
-  const newUser = {
-    id: users.length,
-    username: username,
-    password: password,
-    email: email,
-  }
-  users.push(newUser)
-  saveUsers(users)
+  createUser({ id: Number, username, password, email })
   res.status(201).json({ message: 'User registered successfully' })
 
 }
@@ -47,9 +38,8 @@ const login = (req, res) => {
   }
 
   const { username, password } = req.body
-  const users = getUsers()
-  const user = users.find((user) => user.username === username && user.password === password)
-  if(!user){
+  const user = findUserByUsername(username)
+  if(!user || password !== user.password){
     return res.status(402).json({message: "Invalid username or password."})
   }
   const token = jwt.sign({id: user.id}, "secretKey", {expiresIn: "1h"})
@@ -59,8 +49,7 @@ const login = (req, res) => {
 // GET user profile
 const getProfile = (req, res) => {
   const userID = req.user.id
-  const users = getUsers()
-  const user = users.find((user) => user.id === userID)
+  const user = findUserById(userID)
   if(!user){
     return res.status(404).json({ message: 'User not found' })
   }

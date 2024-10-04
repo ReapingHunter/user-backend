@@ -4,7 +4,7 @@ const { authenticate } = require("../middleware/authMiddleware")
 
 const router = express.Router()
 
-// Define a root route
+// Root route
 router.get('/', (req, res) => {
   res.send('Welcome to User and Profile management API!');
 })
@@ -15,4 +15,5 @@ router.post("/login", login)
 
 // User profile route
 router.get("/profile", authenticate, getProfile)
+
 module.exports = router
