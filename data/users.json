@@ -2,13 +2,13 @@
   {
     "id": 0,
     "username": "TheKeeper",
-    "password": "12345678",
+    "password": "123456789",
     "email": "thekeeper@gmail.com"
   },
   {
     "id": 1,
     "username": "TheSeeker",
-    "password": "910111213",
+    "password": "1011121314",
     "email": "theseeker@gmail.com"
   }
 ]
